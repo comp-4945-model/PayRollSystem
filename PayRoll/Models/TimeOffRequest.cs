@@ -30,5 +30,6 @@ namespace PayRoll.Models
         public Employee Employee { get; set; }
         [RegularExpression("Vacation|Personal Emergency|Appointment")]
         public string Type { get; set; }
+		public ICollection<Schedule> ShiftsRemoved { get; set; } = new List<Schedule>();
     }
 }

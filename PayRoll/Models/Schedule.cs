@@ -15,5 +15,6 @@ namespace PayRoll.Models
 		public DateTime StartTime { get; set; }
 		public DateTime EndTime { get; set; }
 		public ICollection<Employee> Employees { get; set; } = new List<Employee>();
+		public ICollection<TimeOffRequest> TimeOffRequests { get; set; } = new List<TimeOffRequest>();
 	}
 }

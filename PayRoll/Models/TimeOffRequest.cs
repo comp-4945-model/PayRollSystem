@@ -28,7 +28,6 @@ namespace PayRoll.Models
 		public DateTime WhenSent { get; set; } = DateTime.Now;
 
         public Employee Employee { get; set; }
-        [RegularExpression("Vacation|Personal Emergency|Appointment")]
-        public string Type { get; set; }
+        public TypeOfTimeOffRequest TypeOfTimeOffRequest { get; set; }
     }
 }

@@ -39,8 +39,20 @@ namespace PayRoll.Models
                 StartTime = DateTime.Parse("2018-1-1 8:00:00 AM"),
                 EndTime = DateTime.Parse("2018-1-1 4:00:00 PM"),
             });
+			context.Schedules.Add(new Schedule()
+			{
+				ShiftId = 2,
+				StartTime = DateTime.Parse("2018-4-17 8:00:00 AM"),
+				EndTime = DateTime.Parse("2018-4-17 4:00:00 PM"),
+			});
+			context.Schedules.Add(new Schedule()
+			{
+				ShiftId = 3,
+				StartTime = DateTime.Parse("2018-4-20 8:00:00 AM"),
+				EndTime = DateTime.Parse("2018-4-20 4:00:00 PM"),
+			});
 
-            context.SaveChanges();
+			context.SaveChanges();
 
             context.Employees.Add(new Employee()
             {
@@ -74,7 +86,9 @@ namespace PayRoll.Models
             context.Positions.Find("Master").Employees.Add(context.Employees.Find("a00000000"));
             context.Schedules.Find(1).Employees.Add(context.Employees.Find("a00000000"));
             context.Schedules.Find(1).Employees.Add(context.Employees.Find("a00828729"));
-            context.SaveChanges();
+			context.Schedules.Find(2).Employees.Add(context.Employees.Find("a00828729"));
+			context.Schedules.Find(3).Employees.Add(context.Employees.Find("a00828729"));
+			context.SaveChanges();
 
             //TypeOfTimeOff toto = context.TypesOfTimeOff.Where(s => s.Type == "Personal Reasons").FirstOrDefault();
 

@@ -43,6 +43,11 @@ namespace PayRoll.Controllers
             {
                 try
                 {
+					List<Schedule> shiftsEffected = db.Schedules.Where(s => s.StartTime > timeOffRequest.StartDate).Where(s => s.StartTime < timeOffRequest.EndDate).ToList();
+					foreach (Schedule shift in shiftsEffected)
+					{
+						timeOffRequest.ShiftsRemoved.Add(shift);
+					}
                     db.TimeOffRequests.Add(timeOffRequest);
                     db.SaveChanges();
                     db.Employees.Find(sessionEmployee).TimeOffRequests.Add(timeOffRequest);

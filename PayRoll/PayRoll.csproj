@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
+    <Compile Include="Controllers\TimeOffRequestsControllerTest.cs" />
     <Compile Include="Controllers\VerifyLoginAttribute.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -352,6 +353,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\TimeOffRequestsControllerTest\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

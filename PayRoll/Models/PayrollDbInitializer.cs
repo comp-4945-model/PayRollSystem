@@ -128,7 +128,67 @@ namespace PayRoll.Models
             context.SaveChanges();
             context.Positions.Find("Human Resources").Employees.Add(context.Employees.Find("a00828730"));
             context.Schedules.Find(1).Employees.Add(context.Employees.Find("a00828730"));
-            base.Seed(context);
+			TimeOffRequest timeOffRequest = new TimeOffRequest()
+			{
+				StartDate = DateTime.Now,
+				EndDate = DateTime.Now,
+				Reason = "sample"
+			};
+			Employee employee = new Employee()
+			{
+				EmployeeId = "10",
+				Password = "5AMP13PA55W0RD",
+				FName = "Sam",
+				LName = "Ple",
+				FullOrPartTime = "Full-Time",
+				Seniority = 1,
+				DepartmentType = "Production",
+				HourlyRate = 25
+			};
+			employee.TimeOffRequests.Add(timeOffRequest);
+			context.Employees.Add(employee);
+			context.SaveChanges();
+			employee = context.Employees.Find("10");
+			context.TimeOffRequests.RemoveRange(context.TimeOffRequests.Where(t => t.Employee.EmployeeId == employee.EmployeeId));
+			context.Employees.Remove(employee);
+			context.SaveChanges();
+			var x = context.Employees.OrderBy(em => em.FName);
+			var y = context.Employees.OrderByDescending(em => em.Email);
+			TimeOffRequest a = new TimeOffRequest()
+			{
+				StartDate = DateTime.Now,
+				EndDate = DateTime.Now,
+				Reason = "time off A",
+				Type = "Vacation"
+			};
+			TimeOffRequest b = new TimeOffRequest()
+			{
+				StartDate = DateTime.Now,
+				EndDate = DateTime.Now,
+				Reason = "time off B",
+				Type = "Appointment"
+			};
+			TimeOffRequest c = new TimeOffRequest()
+			{
+				StartDate = DateTime.Now,
+				EndDate = DateTime.Now,
+				Reason = "time off C",
+				Type = "Vacation"
+			};
+			TimeOffRequest d = new TimeOffRequest()
+			{
+				StartDate = DateTime.Now,
+				EndDate = DateTime.Now,
+				Reason = "time off D",
+				Type = "Personal Emergency"
+			};
+			employee = context.Employees.Find("a00828730");
+			employee.TimeOffRequests.Add(a);employee.TimeOffRequests.Add(b);employee.TimeOffRequests.Add(c);employee.TimeOffRequests.Add(d);
+			context.Entry(employee).State = EntityState.Modified;
+			context.SaveChanges();
+			var z = context.TimeOffRequests.GroupBy(t => t.Type).Select(g => new { name = g.Key, count = g.Count() });
+			var f = context.TimeOffRequests.Include(t => t.Employee).Where(t => t.Employee.FName == employee.FName).ToList();
+			base.Seed(context);
         }
     }
 }

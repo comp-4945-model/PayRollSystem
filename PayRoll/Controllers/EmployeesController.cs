@@ -14,8 +14,9 @@ namespace PayRoll.Controllers
 {
     public class EmployeesController : Controller
     {
-        private PayrollDbContext db = new PayrollDbContext();
-        private string sessionEmployee = System.Web.HttpContext.Current.Session["EmployeeId"] as String;
+
+		private PayrollDbContext db = new PayrollDbContext();
+		private string sessionEmployee = System.Web.HttpContext.Current.Session["EmployeeId"] as String;
 
 		// GET: Employees
 		[VerifyLogin]
